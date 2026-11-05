@@ -134,3 +134,55 @@ The model admitted it did not know the current weather in 3 out of 3 responses.
 git add ollama/ commands.txt
 git commit -m "Add commentator chatbot"
 git push origin main
+
+Activity 2
+
+7.
+
+python3 ollama/ask_local.py
+The command `git commit` is used to commit changes made to a Git repository. It creates a commit message and adds the changes to the Git history.
+CompletionUsage(completion_tokens=32, prompt_tokens=36, total_tokens=68, completion_tokens_details=None, prompt_tokens_details=PromptTokensDetails(audio_tokens=None, cache_write_tokens=None, cached_tokens=0, image_tokens=None, text_tokens=None))
+
+nano ollama/ask_local.py
+model="commentator"
+python3 ollama/ask_local.py
+Sports fans, I'm here to provide you with accurate information, so I can explain what git commit does! Git commit is a command in the Git command-line tool that allows you to create a commit message and add changes to your code.
+CompletionUsage(completion_tokens=49, prompt_tokens=148, total_tokens=197, completion_tokens_details=None, prompt_tokens_details=PromptTokensDetails(audio_tokens=None, cache_write_tokens=None, cached_tokens=3, image_tokens=None, text_tokens=None))
+
+The commentator uses 112 more prompt tokens because its Modelfile includes additional SYSTEM instructions and
+MESSAGE examples, which are included in the model's input.
+
+8.
+
+python3 ollama/ask_json.py
+{ "answer": "I'm sorry, I don't have enough information
+length
+Traceback (most recent call last):
+  File "/Users/huxinrui/datasci350-quiz03/ollama/ask_json.py", line 18, in <module>
+    print(json.loads(reply)["answer"])
+          ~~~~~~~~~~^^^^^^^
+  File "/opt/anaconda3/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/opt/anaconda3/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.13/json/decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Unterminated string starting at: line 1 column 13 (char 12)
+finish_reason: length
+
+nano ollama/ask_json.py
+max_tokens = 200
+python3 ollama/ask_json.py
+{ "answer": "I'm sorry, I don't have enough information to answer that question about git commit." }
+stop
+I'm sorry, I don't have enough information to answer that question about git commit.
+
+The max_tokens limit was too low, causing the model to stop before completing its JSON response, which resulted
+in a JSONDecodeError. Increasing max_tokens gives the model enough space to generate a complete JSON response.
+
+git add ollama/ commands.txt
+git commit -m "Add Python calls"
+git push origin main
