@@ -186,3 +186,52 @@ in a JSONDecodeError. Increasing max_tokens gives the model enough space to gene
 git add ollama/ commands.txt
 git commit -m "Add Python calls"
 git push origin main
+
+Activity 3
+
+10.
+
+chmod 400 ~/Downloads/quiz03-key.pem
+ssh -i ~/Downloads/quiz03-key.pem ubuntu@ec2-18-224-1-255.us-east-2.compute.amazonaws.com
+ubuntu@ip-172-31-28-138:~$
+
+11.
+
+sudo apt update
+sudo apt install -y python3-pandas python3-matplotlib python3-seaborn
+
+12.
+
+scp -i ~/Downloads/quiz03-key.pem aws/traffic_analysis.py aws/website_traffic.txt ubuntu@ec2-18-224-1-255.us-east-2.compute.amazonaws.com:~
+traffic_analysis.py                           100% 1983    68.9KB/s   00:00    
+website_traffic.txt                           100% 2107    66.5KB/s   00:00 
+
+13.
+
+python3 traffic_analysis.py > results.txt
+cat /var/lib/cloud/data/instance-id >> results.txt
+sha256sum results.txt > fingerprint.txt
+
+14.
+
+scp -i ~/Downloads/quiz03-key.pem ubuntu@ec2-18-224-1-255.us-east-2.compute.amazonaws.com:~/results.txt ubuntu@ec2-18-224-1-255.us-east-2.compute.amazonaws.com:~/fingerprint.txt ubuntu@ec2-18-224-1-255.us-east-2.compute.amazonaws.com:~/traffic_analysis.png aws/
+results.txt                                   100%  291     4.7KB/s   00:00    
+fingerprint.txt                               100%   78     1.2KB/s   00:00    
+traffic_analysis.png                          100%   87KB 715.2KB/s   00:00
+
+15.
+
+When an EC2 instance is stopped, compute charges stop, but we still pay for attached EBS storage and any other retained
+billable resources.
+
+AI Usage:
+
+I used Chatgpt chatbox, I didn't let an AI agent ran commands for me, I ran them all on my terminal.
+I used AI tool mostly assist me for Activity 1. When I was asked to create a prompt for SYSTEM and MESSAGE.
+I asked if I need to include these requirement for the model, what formal sentences I could put in.
+And I also used AI to help me draft the MESSAGE example, to make sure the it has the best result.
+For task 8, I encountered an error when I can not push to the main, I asked AI how to fix this error.
+
+git add -A
+git commit -m "Add AWS analysis results"
+git push origin main
